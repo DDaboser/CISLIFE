@@ -1,28 +1,24 @@
 import streamlit as st
 
-# Home Page Title and Welcome Message
-st.title("CISLife!")
-st.write("Welcome to CISLife!")
+# Home Page Title and Welcome
+st.title("Welcome to CISLife!")
 
-# Getting user input for names
+# User inputs for First and Last Name
 first_name = st.text_input("Please enter your FIRST name:")
 last_name = st.text_input("Please enter your LAST name:")
 
 if first_name and last_name:
-  st.write(f"Hello, {first_name} {last_name}!")
+  st.write(f"Hello, {first_name} {last_name}! Welcome to CISLife!")
 
-st.write("Welcome to CISLife!")
-
-# Grade selection using a dropdown (selectbox)
-grade = st.selectbox("Please enter the grade you want to be in:", ["", "9"])
+# Grade selection
+grade = st.selectbox(
+    "Please select the grade you want to be in:", ["Select a grade", "9"]
+)
 
 if grade == "9":
   st.success("Welcome to the 9th grade!")
-  st.write(
-      "Please select your 8 classes for the 9th grade by selecting one of these"
-      " sets:"
-  )
 
+  # Define the class sets
   set1 = [
       "English",
       "Math",
@@ -44,8 +40,23 @@ if grade == "9":
       "AP Computer Science",
   ]
 
-  st.write("**Set 1:**", set1)
-  st.write("**Set 2:**", set2)
+  # Display the set options
+  st.write("### Available Class Sets:")
+  st.write("**Set 1:**", ", ".join(set1))
+  st.write("**Set 2:**", ", ".join(set2))
+
+  # User selection for Set 1 or Set 2
+  selected_set = st.radio(
+      "Please select your 8 classes for the 9th grade:",
+      ["Set 1", "Set 2"],
+      index=None,  # No set selected by default
+  )
+
+  # Display confirmation based on choice
+  if selected_set == "Set 1":
+    st.info(f"You have selected **Set 1**: {', '.join(set1)}")
+  elif selected_set == "Set 2":
+    st.info(f"You have selected **Set 2**: {', '.join(set2)}")
     
 
     
